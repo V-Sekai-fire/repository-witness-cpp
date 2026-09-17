@@ -50,5 +50,13 @@ if(WITNESS_NO_EXCEPTIONS)
 	endif()
 endif()
 
+# Warnings are errors so a deprecation MSVC raises on the header fails
+# here rather than in a consumer's werror build.
+if(MSVC)
+	target_compile_options(witness_lib_tests PRIVATE /W4 /WX)
+else()
+	target_compile_options(witness_lib_tests PRIVATE -Wall -Wextra -Werror)
+endif()
+
 include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
 doctest_discover_tests(witness_lib_tests)
