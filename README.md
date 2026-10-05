@@ -14,7 +14,7 @@ cmake --build build
 ctest --test-dir build
 ```
 
-The library is the headers alone; the build above compiles and runs its tests.
+The library is the headers alone; the build above compiles and runs its tests. A CMake consumer links the `witness::witness` target, through `add_subdirectory` or through `find_package(witness-cpp)` after an install; any other build adds `include/` to its include path.
 
 ## Licence
 
